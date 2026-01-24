@@ -216,15 +216,17 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_codecs_performance_yupik_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance_yupik_v1.xml \
     $(LOCAL_PATH)/media/media_codecs_yupik_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_yupik_v1.xml
 
-$(call soong_config_set,stagefright,target_disables_thumbnail_block_model,true)
+$(call soong_config_set,stagefright,target_disable_thumbnail_block_model,true)
 
 # Overlays
 $(call inherit-product, hardware/oplus/overlay/generic/generic.mk)
 $(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
 
 DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay-voltage
+DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay-yaap
-
+    
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     CarrierConfigResCommon \
@@ -333,7 +335,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     TouchGestures \
     vendor.lineage.touch@1.0-service.oplus
-
+    
 # Update engine
 PRODUCT_PACKAGES += \
     update_engine \
